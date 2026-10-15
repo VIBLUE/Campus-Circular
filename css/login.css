@@ -1,0 +1,169 @@
+/* =========================================================
+   Campus Circular — login.css (หน้าล็อกอิน)
+   ใช้ร่วมกับ style.css
+   ========================================================= */
+
+.login {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 40px 16px;
+  background: var(--ink-strong); /* #0b2b26 */
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* พื้นหลังรูปชั้นหนังสือ: เบลอ 4.9px จาง 31% */
+.login__bg {
+  position: fixed;
+  inset: -12px; /* ขยายออกนิดหน่อยกันขอบเบลอเป็นเส้นสว่าง */
+  z-index: 0;
+  background: url("../images/login-bg.png") center / cover no-repeat;
+  opacity: 0.31;
+  filter: blur(4.9px);
+  pointer-events: none;
+}
+
+.login__box {
+  position: relative;
+  z-index: 1;
+  width: min(526px, 100%);
+}
+
+/* ---------- โลโก้ ---------- */
+.login-logo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 32px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-logo__text {
+  font-size: clamp(56px, 5vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.06em; /* -5.76px ที่ 96px */
+  line-height: 1.2;
+}
+
+/* เส้น 3 เส้น: สั้น / ยาว / กลาง */
+.login-logo__mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 37px;
+  margin-bottom: 0.2em;
+  font-size: clamp(56px, 5vw, 96px); /* ให้เส้นย่อขยายตามโลโก้ด้วย em */
+}
+
+.login-logo__mark span {
+  width: 0.1em;
+  border-radius: 0.05em;
+  background: #fff;
+}
+
+.login-logo__mark span:nth-child(1) { height: 0.61em; margin-bottom: 0.38em; }
+.login-logo__mark span:nth-child(2) { height: 1.72em; }
+.login-logo__mark span:nth-child(3) { height: 1.24em; margin-bottom: 0.38em; }
+
+/* ---------- ฟอร์ม ---------- */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 44px;
+}
+
+.field + .field {
+  margin-top: 75px;
+}
+
+.field__label {
+  display: block;
+  margin: 0 0 7px 4px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -1.44px;
+}
+
+/* ช่องกรอก: ปกติสีขาว / ตอนกำลังพิมพ์เป็นเขียวเข้ม (ตามดีไซน์ช่อง UserName) */
+.field__input {
+  width: 100%;
+  height: 45px;
+  padding: 0 18px;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  background: #fff;
+  color: #000;
+  font-size: 18px;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: #000;
+  background: var(--teal-dark);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(240, 255, 36, 0.6);
+}
+
+.field__input[aria-invalid="true"] {
+  border-color: #ff4c00;
+  box-shadow: 0 0 0 3px rgba(255, 76, 0, 0.45);
+}
+
+.login-form__error {
+  min-height: 1.5em;
+  margin-top: 16px;
+  color: #ffb199;
+  font-size: 15px;
+  text-align: center;
+}
+
+.login-form__submit {
+  align-self: center;
+  width: 176px;
+  height: 39px;
+  margin-top: 40px;
+  border-radius: 20px;
+  background: var(--teal);
+  color: var(--ink-strong);
+  font-size: 20px;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.login-form__submit:hover {
+  background: #1cdccd;
+}
+
+.login-form__submit:active {
+  transform: scale(0.97);
+}
+
+/* ---------- มือถือ ---------- */
+@media (max-width: 560px) {
+  .login-logo {
+    gap: 18px;
+  }
+
+  .login-logo__mark {
+    gap: 18px;
+  }
+
+  .login-form {
+    margin-top: 32px;
+  }
+
+  .field + .field {
+    margin-top: 36px;
+  }
+
+  .field__label {
+    font-size: 20px;
+  }
+
+  .field__input {
+    height: 48px; /* นิ้วกดง่ายขึ้นบนมือถือ */
+  }
+}

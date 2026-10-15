@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ลงของ / คลังของฉัน — Campus Circular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Campus Circular กลับหน้าแรก">
+      <span class="logo__text">Campus Circular</span>
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+    <form class="search" role="search" action="main.html" method="get">
+      <label for="search-input" class="visually-hidden">ค้นหาของ</label>
+      <img class="search__icon" src="images/search.svg" alt="">
+      <input id="search-input" class="search__input" type="search" name="q"
+             placeholder="ค้นหาของ หรือใส่รหัสวิชา เช่น ENG-XXX" autocomplete="off">
+    </form>
+    <nav class="top-nav" aria-label="เมนูหลัก">
+      <a class="top-nav__link" href="#" data-notify><img src="images/bell.svg" alt=""><span class="top-nav__text">แจ้งเตือน</span></a>
+      <a class="top-nav__link" href="post.html" aria-current="page"><img src="images/bookmark.svg" alt=""><span class="top-nav__text">คลัง</span></a>
+      <a class="top-nav__link" href="post.html?new=1"><img src="images/plus.svg" alt=""><span class="top-nav__text">ลงของ</span></a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="page-top">
+      <a class="back-btn" href="main.html" data-back aria-label="ย้อนกลับ"><img src="images/back.svg" alt=""></a>
+      <h1 class="visually-hidden">ลงของและคลังของที่ลงไว้</h1>
+    </div>
+
+    <div class="post-box">
+      <section class="post-panel post-cta">
+        <img class="post-cta__icon" src="images/box.svg" alt="">
+        <h2 class="post-cta__title">มีของไม่ได้ใช้แล้วใช่มั้ย?</h2>
+        <p class="post-cta__sub">ของที่คุณมี อาจมีคนต้องการ ให้เราช่วยหาคนรับต่อให้สิ</p>
+        <button class="btn btn--primary" type="button" id="open-form">ลงของได้เลย!</button>
+      </section>
+
+      <section class="post-panel closet-panel" aria-labelledby="closet-title">
+        <h2 class="closet-panel__title" id="closet-title">คลังของที่ลงไว้</h2>
+        <div class="closet-list" id="closet-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <!-- ===== ป๊อปอัปฟอร์มลงของ ===== -->
+  <div class="modal" id="form-modal" hidden role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <div class="modal__card">
+      <button class="modal__close" type="button" data-close aria-label="ปิด">×</button>
+      <h2 class="modal__title" id="form-title">ลงของชิ้นใหม่</h2>
+
+      <form id="post-form" novalidate>
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="f-title">ชื่อของ *</label>
+            <input id="f-title" name="title" type="text" required maxlength="60" placeholder="เช่น หนังสือแคลคูลัส 2" data-autofocus>
+          </div>
+
+          <div class="form-field">
+            <label for="f-mode">โหมด *</label>
+            <select id="f-mode" name="mode">
+              <option value="give">ส่งต่อ - Give</option>
+              <option value="sell">ขาย - Sell</option>
+              <option value="swap">แลก - Swap</option>
+              <option value="lend">ยืม - Lend</option>
+              <option value="rent">เช่า - Rent</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="f-price">ราคา / เงื่อนไข</label>
+            <input id="f-price" name="price" type="text" maxlength="30" placeholder="เช่น 200 บาท, ยืมได้ 3 วัน">
+          </div>
+
+          <div class="form-field">
+            <label for="f-category">หมวดหมู่ *</label>
+            <select id="f-category" name="category"></select>
+          </div>
+
+          <div class="form-field">
+            <label for="f-pickup">จุดนัดรับ *</label>
+            <select id="f-pickup" name="pickup"></select>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="f-desc">รายละเอียด</label>
+            <textarea id="f-desc" name="desc" maxlength="200" placeholder="สภาพของ ใช้มานานแค่ไหน รับได้วันไหน"></textarea>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="f-photo">รูปของ</label>
+            <input id="f-photo" name="photo" type="file" accept="image/*">
+            <img class="photo-preview" id="photo-preview" src="" alt="" hidden>
+          </div>
+        </div>
+
+        <p class="form-error" id="form-error" role="alert"></p>
+
+        <div class="modal__footer">
+          <button class="btn btn--primary" type="submit">ลงของเลย</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/post.js"></script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+/* =========================================================
+   Campus Circular — chat.css (หน้าแชท)
+   ========================================================= */
+
+.chat-page {
+  --panel: rgba(0, 93, 86, 0.8);
+  --panel-dark: #00564f;
+
+  display: grid;
+  grid-template-columns: 82px minmax(260px, 391px) minmax(0, 1fr);
+  gap: 16px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 13px 29px 13px 12px;
+  background: #e5e5e5;
+  overflow: hidden;
+}
+
+/* ---------- แถบเมนูซ้ายสุด ---------- */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.rail__logo img {
+  width: 31px;
+  height: 55px;
+}
+
+.rail__item {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.rail__item img {
+  width: 35px;
+  height: 35px;
+}
+
+.rail__item.is-active::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: -6px;
+  width: 5px;
+  height: 57px;
+  border-radius: 1px;
+  background: var(--ink-strong);
+}
+
+.rail__item:hover {
+  color: var(--teal-dark);
+}
+
+/* ---------- รายชื่อแชท ---------- */
+.inbox {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 27px 9px 16px;
+  border-radius: 25px;
+  background: var(--panel);
+}
+
+.inbox__title {
+  margin-left: 26px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.inbox__search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 22px 20px;
+}
+
+.inbox__field {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.inbox__field img {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 21px;
+  height: 21px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.inbox__search input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px 0 48px;
+  border: 0;
+  border-radius: 17px;
+  background: #d9d9d9;
+  font-size: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inbox__search input::placeholder {
+  color: rgba(0, 0, 0, 0.51);
+}
+
+.inbox__filter {
+  width: 30px;
+  height: 25px;
+}
+
+.inbox__list {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  overflow-y: auto;
+}
+
+.thread {
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 17px;
+  width: 100%;
+  min-height: 85px;
+  padding: 10px 14px 10px 11px;
+  border-radius: 14px;
+  background: rgba(148, 181, 181, 0.18);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.thread:hover {
+  background: rgba(148, 181, 181, 0.3);
+}
+
+.thread[aria-current="true"] {
+  background: var(--panel-dark);
+}
+
+.thread__avatar {
+  grid-row: span 2;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.thread__name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.thread__last {
+  grid-column: 2;
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.thread__date {
+  grid-column: 3;
+  grid-row: 2;
+  font-size: 13px;
+}
+
+/* ---------- ห้องแชท ---------- */
+.room {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 85px minmax(0, 1fr);
+  gap: 26px;
+  min-height: 0;
+}
+
+.room__topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 7px;
+}
+
+.room__home {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 25px;
+  background: rgba(0, 93, 86, 0.9);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.room__home:hover {
+  background: var(--panel-dark);
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 293px;
+  padding: 0 17px 0 13px;
+  border-radius: 25px;
+  background: #176b64;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.me__avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.me__badge,
+.room__name img {
+  width: 24px;
+  height: 24px;
+}
+
+.room__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 125px minmax(0, 1fr) auto;
+  min-height: 0;
+  border-radius: 25px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.room__head {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  padding: 0 32px;
+  border-radius: 26px 25px 0 0;
+  background: var(--panel-dark);
+  box-shadow: 1px 7px 9px rgba(0, 0, 0, 0.35);
+}
+
+.room__avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.room__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.room__head .tag {
+  min-width: 119px;
+  height: 30px;
+}
+
+/* ข้อความ */
+.room__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 30px 61px 30px 32px;
+  overflow-y: auto;
+}
+
+.msg-group {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 0 12px;
+  margin-top: 18px;
+}
+
+.msg-group > div {
+  min-width: 0; /* กันข้อความยาวดันจนล้นกรอบ */
+}
+
+.msg-group__avatar {
+  width: 76px;
+  height: 76px;
+  margin-top: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.msg-group__name {
+  margin: 0 0 6px 11px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.msg-group__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.bubble {
+  max-width: min(560px, 100%);
+  padding: 16px 24px;
+  border-radius: 30px 30px 30px 10px;
+  background: #fff;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.msg-group--me {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 40px;
+}
+
+.msg-group--me .msg-group__body {
+  align-items: flex-end;
+}
+
+.msg-group--me .bubble {
+  border-radius: 30px 30px 10px 30px;
+}
+
+/* ช่องพิมพ์ */
+.composer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 32px 22px;
+}
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  height: 54px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 27px;
+  background: #fff;
+  font-size: 18px;
+}
+
+.composer input:focus {
+  outline: 3px solid rgba(240, 255, 36, 0.7);
+}
+
+.composer__send {
+  min-width: 96px;
+  height: 54px;
+  border-radius: 27px;
+  background: var(--ink-strong);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.composer__send:hover {
+  background: #000;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1200px) {
+  .chat-page {
+    grid-template-columns: 70px minmax(220px, 300px) minmax(0, 1fr);
+    padding-right: 13px;
+  }
+
+  .room__messages {
+    padding: 24px;
+  }
+
+  .bubble {
+    font-size: 17px;
+  }
+
+  .me {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .chat-page {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .rail {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 0 6px;
+  }
+
+  .rail__logo img {
+    width: 22px;
+    height: 40px;
+  }
+
+  .rail__item {
+    width: auto;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .rail__item img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .rail__item.is-active::before {
+    left: 0;
+    top: auto;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+  }
+
+  /* รายชื่อแชทเป็นแถวเลื่อนแนวนอน แสดงแค่รูป + ชื่อ */
+  .inbox {
+    padding: 12px 10px;
+    border-radius: 18px;
+  }
+
+  .inbox__title,
+  .inbox__search {
+    display: none;
+  }
+
+  .inbox__list {
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+  }
+
+  .thread {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    flex-shrink: 0;
+    width: 86px;
+    min-height: 0;
+    padding: 8px 4px;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .thread__avatar {
+    grid-row: auto;
+    width: 48px;
+    height: 48px;
+  }
+
+  .thread__name {
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .thread__last,
+  .thread__date {
+    display: none;
+  }
+
+  .room {
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .room__topbar {
+    display: none;
+  }
+
+  .room__panel {
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    border-radius: 18px;
+  }
+
+  .room__head {
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .room__avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .room__name {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .room__messages {
+    padding: 12px;
+  }
+
+  .msg-group {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 0 8px;
+  }
+
+  .msg-group--me {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 20px;
+  }
+
+  .msg-group__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .msg-group__name {
+    font-size: 14px;
+  }
+
+  .bubble {
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 20px 20px 20px 6px;
+  }
+
+  .msg-group--me .bubble {
+    border-radius: 20px 20px 6px 20px;
+  }
+
+  .composer {
+    padding: 10px 12px 12px;
+  }
+
+  .composer input,
+  .composer__send {
+    height: 46px;
+    font-size: 16px;
+  }
+
+  .composer__send {
+    min-width: 64px;
+  }
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รายการสินค้าของฉัน — Campus Circular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Campus Circular กลับหน้าแรก">
+      <span class="logo__text">Campus Circular</span>
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+    <form class="search" role="search" action="main.html" method="get">
+      <label for="search-input" class="visually-hidden">ค้นหาของ</label>
+      <img class="search__icon" src="images/search.svg" alt="">
+      <input id="search-input" class="search__input" type="search" name="q"
+             placeholder="ค้นหาของ หรือใส่รหัสวิชา เช่น ENG-XXX" autocomplete="off">
+    </form>
+    <nav class="top-nav" aria-label="เมนูหลัก">
+      <a class="top-nav__link" href="#" data-notify><img src="images/bell.svg" alt=""><span class="top-nav__text">แจ้งเตือน</span></a>
+      <a class="top-nav__link" href="post.html"><img src="images/bookmark.svg" alt=""><span class="top-nav__text">คลัง</span></a>
+      <a class="top-nav__link" href="post.html?new=1"><img src="images/plus.svg" alt=""><span class="top-nav__text">ลงของ</span></a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="page-top">
+      <a class="back-btn" href="main.html" data-back aria-label="ย้อนกลับ"><img src="images/back.svg" alt=""></a>
+      <h1 class="visually-hidden">รายการสินค้าของฉัน</h1>
+    </div>
+
+    <div class="cart-box">
+      <!-- รายการของในตะกร้า (เติมโดย js/cart.js) -->
+      <section aria-label="ของในตะกร้า">
+        <div class="cart-list" id="cart-list"></div>
+      </section>
+
+      <!-- ผู้ลงของ + สถานที่นัดรับ -->
+      <aside class="cart-side" aria-label="ผู้ลงของและสถานที่นัดรับ">
+        <div class="seller seller--big">
+          <img class="seller__avatar" id="seller-avatar" src="" alt="">
+          <p class="seller__name" id="seller-name"></p>
+          <p class="seller__stats"><img src="images/star.svg" alt=""><span id="seller-stats"></span></p>
+          <p class="seller__verify"><img src="images/verified.svg" alt="">ยืนยันอีเมล @rmutt.ac.th แล้ว</p>
+          <p class="closet__label">คลังของฉัน</p>
+          <div class="closet" id="seller-closet"></div>
+        </div>
+
+        <p class="map-label">สถานที่นัดรับ</p>
+        <div class="map">
+          <img class="map__img" src="images/map-th.png" alt="แผนที่สถานที่นัดรับ">
+          <img class="map__pin" src="images/map-marker.svg" alt="">
+        </div>
+
+        <button class="btn btn--primary btn--pill" type="button" id="confirm-btn">ยืนยันจุดนัดพบ</button>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <!-- ===== ป๊อปอัป 1: ยืนยันจุดนัดพบ ===== -->
+  <div class="modal" id="meet-modal" hidden role="dialog" aria-modal="true" aria-labelledby="meet-title">
+    <div class="modal__card modal__card--wide">
+      <button class="modal__close" type="button" data-close aria-label="ปิด">×</button>
+      <h2 class="modal__title" id="meet-title">รายการของที่ต้องการดังนี้</h2>
+      <div class="pick-grid" id="pick-grid"></div>
+
+      <div class="pickup-panel">
+        <div>
+          <p class="pickup-panel__label">จุดนัดรับ</p>
+          <p class="pickup-panel__value" id="pickup-value"></p>
+          <label for="pickup-select" class="visually-hidden">เลือกจุดนัดรับ</label>
+          <select class="pickup-panel__select" id="pickup-select"></select>
+        </div>
+        <img class="pickup-panel__map" src="images/map-street.png" alt="แผนที่บริเวณจุดนัดรับ">
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--primary btn--pill" type="button" id="meet-confirm">ยืนยันจุดนัดพบ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ป๊อปอัป 2: กำลังติดต่อผู้ลงของ ===== -->
+  <div class="modal" id="done-modal" hidden role="dialog" aria-modal="true" aria-labelledby="done-title" data-locked>
+    <div class="modal__card modal__card--wide">
+      <div class="done">
+        <h2 class="done__title" id="done-title">กำลังติดต่อหาผู้ลงของ</h2>
+        <div class="spinner" id="done-spinner" aria-hidden="true"></div>
+        <p class="done__sub" id="done-sub" hidden>ยืนยันการสั่งซื้อแล้ว</p>
+        <div class="done__items" id="done-items"></div>
+        <a class="done__link" href="chat.html">ไปที่แชท</a>
+        <a class="done__link" href="main.html">กลับสู่หน้าหลัก</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

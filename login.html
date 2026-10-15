@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เข้าสู่ระบบ — Campus Circular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login">
+
+  <!-- พื้นหลังรูปชั้นหนังสือ (เบลอ + จาง) -->
+  <div class="login__bg" aria-hidden="true"></div>
+
+  <main class="login__box">
+    <a class="login-logo" href="index.html" aria-label="Campus Circular กลับหน้าแรก">
+      <span class="login-logo__text">Campus<br>Circular</span>
+      <span class="login-logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+
+    <form class="login-form" id="login-form" novalidate>
+      <div class="field">
+        <label class="field__label" for="username">UserName</label>
+        <input class="field__input" id="username" name="username" type="text"
+               autocomplete="username" required aria-describedby="login-error">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="password">Password</label>
+        <input class="field__input" id="password" name="password" type="password"
+               autocomplete="current-password" required aria-describedby="login-error">
+      </div>
+
+      <p class="login-form__error" id="login-error" role="alert"></p>
+
+      <button class="login-form__submit" type="submit">Submit</button>
+    </form>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

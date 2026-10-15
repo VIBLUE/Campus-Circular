@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รายละเอียดสินค้า — Campus Circular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+  <!-- ===== Header (เหมือนทุกหน้าด้านใน) ===== -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Campus Circular กลับหน้าแรก">
+      <span class="logo__text">Campus Circular</span>
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+    <form class="search" role="search" action="main.html" method="get">
+      <label for="search-input" class="visually-hidden">ค้นหาของ</label>
+      <img class="search__icon" src="images/search.svg" alt="">
+      <input id="search-input" class="search__input" type="search" name="q"
+             placeholder="ค้นหาของ หรือใส่รหัสวิชา เช่น ENG-XXX" autocomplete="off">
+    </form>
+    <nav class="top-nav" aria-label="เมนูหลัก">
+      <a class="top-nav__link" href="#" data-notify><img src="images/bell.svg" alt=""><span class="top-nav__text">แจ้งเตือน</span></a>
+      <a class="top-nav__link" href="post.html"><img src="images/bookmark.svg" alt=""><span class="top-nav__text">คลัง</span></a>
+      <a class="top-nav__link" href="post.html?new=1"><img src="images/plus.svg" alt=""><span class="top-nav__text">ลงของ</span></a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="page-top">
+      <a class="back-btn" href="main.html" data-back aria-label="ย้อนกลับ"><img src="images/back.svg" alt=""></a>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" id="breadcrumb"></ol>
+      </nav>
+    </div>
+
+    <!-- เนื้อหาถูกเติมโดย js/product.js -->
+    <div class="product" id="product"></div>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <!-- ===== ป๊อปอัปยืนยันสั่งซื้อ ===== -->
+  <div class="modal" id="order-modal" hidden role="dialog" aria-modal="true" aria-labelledby="order-title">
+    <div class="modal__card">
+      <button class="modal__close" type="button" data-close aria-label="ปิด">×</button>
+      <div class="order-summary">
+        <img class="order-summary__img" id="order-img" src="" alt="">
+        <div>
+          <h2 class="order-summary__title" id="order-title"></h2>
+          <dl class="specs" id="order-specs"></dl>
+        </div>
+      </div>
+      <div class="order-actions">
+        <a class="btn btn--primary" href="main.html" data-autofocus>ซื้อสินค้าต่อ</a>
+        <a class="btn btn--primary" href="cart.html"><img src="images/basket.svg" alt="">รายการสินค้าของฉัน</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

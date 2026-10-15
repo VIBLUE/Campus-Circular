@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>แชทพูดคุย — Campus Circular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/chat.css">
+</head>
+<body class="chat-page">
+
+  <!-- แถบเมนูซ้ายสุด -->
+  <nav class="rail" aria-label="เมนู">
+    <a class="rail__logo" href="main.html" aria-label="กลับหน้าหลัก"><img src="images/logo-mark-teal.svg" alt=""></a>
+    <a class="rail__item is-active" href="chat.html" aria-current="page">
+      <img src="images/chat.svg" alt=""><span>พูดคุย</span>
+    </a>
+    <a class="rail__item" href="cart.html">
+      <img src="images/bag.svg" alt=""><span>คำสั่งซื้อ</span>
+    </a>
+  </nav>
+
+  <!-- รายชื่อแชท -->
+  <aside class="inbox" aria-label="รายชื่อแชท">
+    <h1 class="inbox__title">แชทพูดคุย</h1>
+    <div class="inbox__search">
+      <label for="inbox-search" class="visually-hidden">ค้นหาแชท</label>
+      <div class="inbox__field">
+        <img src="images/search-dark.svg" alt="">
+        <input id="inbox-search" type="search" placeholder="ค้นหา" autocomplete="off">
+      </div>
+      <img class="inbox__filter" src="images/filter.svg" alt="">
+    </div>
+    <ul class="inbox__list" id="inbox-list"></ul>
+  </aside>
+
+  <!-- ห้องแชท -->
+  <section class="room" aria-label="ห้องแชท">
+    <div class="room__topbar">
+      <a class="room__home" href="main.html">← กลับสู่หน้าหลัก</a>
+      <div class="me">
+        <img class="me__avatar" src="images/chat-me.png" alt="">
+        <span class="me__name" id="me-name"></span>
+        <img class="me__badge" src="images/badge.svg" alt="ยืนยันตัวตนแล้ว">
+      </div>
+    </div>
+
+    <div class="room__panel">
+      <header class="room__head">
+        <img class="room__avatar" id="room-avatar" src="" alt="">
+        <div>
+          <p class="room__name"><span id="room-name"></span> <img src="images/badge.svg" alt="ยืนยันตัวตนแล้ว"></p>
+          <span id="room-tag"></span>
+        </div>
+      </header>
+
+      <div class="room__messages" id="messages" aria-live="polite"></div>
+
+      <form class="composer" id="composer">
+        <label for="composer-input" class="visually-hidden">พิมพ์ข้อความ</label>
+        <input id="composer-input" type="text" placeholder="พิมพ์ข้อความ..." autocomplete="off">
+        <button class="composer__send" type="submit">ส่ง</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

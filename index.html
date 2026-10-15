@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Circular — ของที่ไม่ได้ใช้ อาจเป็นของที่ใครกำลังหา</title>
+  <meta name="description" content="เชื่อมต่อเพื่อนในมหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี ให้ทุกของมีโอกาสได้ไปต่อ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="home">
+
+  <!-- พื้นหลังรูปหนังสือ (เบลอ + จาง) -->
+  <div class="home__bg" aria-hidden="true"></div>
+
+  <header class="home-header">
+    <a class="home-logo" href="index.html" aria-label="Campus Circular RMUTT หน้าแรก">
+      <span class="home-logo__text">
+        <span class="home-logo__name">Campus Circular</span>
+        <span class="home-logo__sub">RMUTT</span>
+      </span>
+      <span class="home-logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+
+    <!-- ค้นหา → ส่งไปหน้า main.html?q=... -->
+    <form class="home-search" role="search" action="main.html" method="get">
+      <label for="home-search-input" class="visually-hidden">ค้นหาของ</label>
+      <img class="home-search__icon" src="images/search.svg" alt="">
+      <input id="home-search-input" class="home-search__input" type="search" name="q"
+             placeholder="ค้นหาของ หรือใส่รหัสวิชา เช่น ENG-XXX" autocomplete="off">
+    </form>
+
+    <nav class="home-nav" aria-label="เมนูหลัก">
+      <a class="home-nav__post" href="post.html?new=1">
+        <img src="images/plus-white.svg" alt=""> ลงของ
+      </a>
+      <a class="home-nav__register" href="login.html">ลงทะเบียน</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <h1 class="hero__title">
+      <span class="hero__line">ของที่ <span class="hero__accent">“<s>ไม่ได้ใช้</s>”</span></span>
+      <span class="hero__line">อาจเป็นของที่ใครกำลังหา</span>
+    </h1>
+    <p class="hero__sub">
+      เชื่อมต่อเพื่อนในมหาวิทยาลัยเทคโนโลยีราชมงคล ธัญบุรี<br>
+      ให้ทุกของมีโอกาสได้ไปต่อ
+    </p>
+    <div class="hero__cta">
+      <a class="hero__btn hero__btn--fill" href="main.html">ค้นหาของ <span aria-hidden="true">→</span></a>
+      <a class="hero__btn hero__btn--line" href="post.html?new=1">ลงของ <span aria-hidden="true">+</span></a>
+    </div>
+  </main>
+
+</body>
+</html>

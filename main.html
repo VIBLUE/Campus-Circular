@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Circular — ของที่หมุนเวียนอยู่ตอนนี้</title>
+  <meta name="description" content="แพลตฟอร์มหมุนเวียนของใช้ในมหาวิทยาลัย ส่งต่อ ขาย แลก ยืม เช่า">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Campus Circular กลับหน้าแรก">
+      <span class="logo__text">Campus Circular</span>
+      <span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    </a>
+
+    <form class="search" role="search" action="main.html" method="get">
+      <label for="search-input" class="visually-hidden">ค้นหาของ</label>
+      <img class="search__icon" src="images/search.svg" alt="">
+      <input id="search-input" class="search__input" type="search" name="q"
+             placeholder="ค้นหาของ หรือใส่รหัสวิชา เช่น ENG-XXX" autocomplete="off">
+    </form>
+
+    <nav class="top-nav" aria-label="เมนูหลัก">
+      <a class="top-nav__link" href="#" data-notify>
+        <img src="images/bell.svg" alt=""><span class="top-nav__text">แจ้งเตือน</span>
+      </a>
+      <a class="top-nav__link" href="post.html">
+        <img src="images/bookmark.svg" alt=""><span class="top-nav__text">คลัง</span>
+      </a>
+      <a class="top-nav__link" href="post.html?new=1">
+        <img src="images/plus.svg" alt=""><span class="top-nav__text">ลงของ</span>
+      </a>
+    </nav>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar" aria-label="ตัวกรอง">
+      <section>
+        <h2 class="sidebar__label">โหมด</h2>
+        <div class="mode-list" role="group" aria-label="เลือกโหมด">
+          <button class="mode-btn is-active" data-mode="all" aria-pressed="true">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">ทั้งหมด (ALL)</span>
+          </button>
+          <button class="mode-btn" data-mode="give" aria-pressed="false">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">ส่งต่อ - Give</span>
+          </button>
+          <button class="mode-btn" data-mode="sell" aria-pressed="false">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">ขาย - Sell</span>
+          </button>
+          <button class="mode-btn" data-mode="swap" aria-pressed="false">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">แลก - Swap</span>
+          </button>
+          <button class="mode-btn" data-mode="lend" aria-pressed="false">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">ยืม - Lend</span>
+          </button>
+          <button class="mode-btn" data-mode="rent" aria-pressed="false">
+            <span class="mode-btn__dot"></span><span class="mode-btn__text">เช่า - Rent</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="sidebar__categories">
+        <h2 class="sidebar__label">หมวดหมู่</h2>
+        <div class="category-row">
+          <div class="category-list" role="group" aria-label="เลือกหมวดหมู่">
+            <button class="category-btn" data-category="book" aria-pressed="false">หนังสือและเอกสาร</button>
+            <button class="category-btn" data-category="clothes" aria-pressed="false">เสื้อผ้าและเครื่องแต่งกาย</button>
+            <button class="category-btn" data-category="electronics" aria-pressed="false">อุปกรณ์อิเล็กทรอนิกส์</button>
+            <button class="category-btn" data-category="furniture" aria-pressed="false">เฟอร์นิเจอร์หอพัก</button>
+            <button class="category-btn" data-category="sport" aria-pressed="false">อุปกรณ์กีฬา</button>
+          </div>
+
+          <div class="distance">
+            <div class="distance__wrap">
+              <label for="distance-range" class="visually-hidden">ระยะทางไม่เกิน (กิโลเมตร)</label>
+              <input id="distance-range" class="distance__range" type="range" min="0.5" max="5" step="0.5" value="5">
+              <output class="distance__value" for="distance-range" id="distance-value">5</output>
+            </div>
+            <span class="distance__label">กิโลเมตร</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="matcher">
+        <h2 class="matcher__title">TEXTBOOK MATCHER</h2>
+        <p class="matcher__desc">ใส่รหัสวิชาที่จะลงทะเบียนแล้วระบบจะหาหนังสือมือสองที่ตรงให้อัตโนมัติ</p>
+        <button class="matcher__link" type="button" id="matcher-btn">ใส่รหัสวิชา</button>
+      </section>
+    </aside>
+
+    <!-- ===== รายการของ ===== -->
+    <main class="feed">
+      <div class="feed__head">
+        <div>
+          <h1 class="feed__title">ของที่หมุนเวียนอยู่ตอนนี้</h1>
+          <p class="feed__meta" id="feed-meta" aria-live="polite">— รายการ · อัพเดทล่าสุด 5 นาทีที่แล้ว</p>
+        </div>
+        <label class="sort">
+          <span>เรียงตาม</span>
+          <select class="sort__select" id="sort-select">
+            <option value="near">ระยะทางที่ใกล้ที่สุด</option>
+            <option value="far">ระยะทางที่ไกลที่สุด</option>
+            <option value="saved">ที่กดถูกใจไว้</option>
+            <option value="new">ของมาใหม่</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="fast-track" type="button" aria-pressed="false">Fast Track</button>
+
+      <div class="card-grid" id="card-grid"></div>
+      <p class="empty" id="empty-state" hidden>ไม่พบของที่ตรงกับตัวกรอง ลองเปลี่ยนโหมดหรือเพิ่มระยะทางดูนะ</p>
+    </main>
+
+    <!-- ===== คอลัมน์ขวา ===== -->
+    <aside class="aside" aria-label="ข้อมูลเพิ่มเติม">
+      <section class="impact">
+        <img class="impact__bg" src="images/rmutt.png" alt="">
+        <p>มหาวิทยาลัยช่วยลดไปแล้ว</p>
+        <p class="impact__num">1,067<span class="impact__unit">กก.</span></p>
+        <p>จาก 729 ธุรกรรมของนักเรียน 389 คน<br>ตั้งแต่เปิดใช้งาน</p>
+      </section>
+
+      <section>
+        <h2 class="aside__title">จุดนัดรับที่ใช้บ่อย</h2>
+        <ul class="pickup-list">
+          <li><img src="images/map-pin.svg" alt="">โรงอาหารกลาง ชั้น 1</li>
+          <li><img src="images/map-pin.svg" alt="">ล็อบบี้คณะวิศวกรรมศาสตร์</li>
+          <li><img src="images/map-pin.svg" alt="">หน้าหอสมุดกลาง</li>
+        </ul>
+      </section>
+
+      <section class="campaign">
+        <h2 class="campaign__title">Graduation Drop</h2>
+        <p class="campaign__desc">ใกล้จบแล้วใช่ไหม? ลงของทีเดียวหลายชิ้น ได้ในแคมเปญนี้เลย!</p>
+        <a class="campaign__link" href="post.html?new=1">เริ่มเครียร์ของ <img src="images/arrow-right.svg" alt=""></a>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="site-footer"></footer>
+
+  <!-- ===== ปุ่มแชทลอย ===== -->
+  <a class="chat-fab" href="chat.html" aria-label="แชทพูดคุย">
+    <span class="chat-fab__label">แชทพูดคุย</span>
+    <img class="chat-fab__icon" src="images/chat.svg" alt="">
+    <img class="chat-fab__avatar" src="images/avatar.png" alt="">
+  </a>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
